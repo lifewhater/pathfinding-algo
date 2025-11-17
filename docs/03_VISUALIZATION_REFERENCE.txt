@@ -1,0 +1,34 @@
+VISUALIZATION (ASCII RENDERER) REFERENCE
+
+NAME
+  renderer - deterministic ASCII overlay of explored nodes and final path
+
+SYNOPSIS
+  OverlayAndPrint(grid, result, algo_name)
+
+RENDER ORDER (STRICT)
+  1) Print algorithm header: === BFS === (or Dijkstra, A*)
+  2) Print HEIGHT lines of WIDTH characters
+  3) Print summary line: Found: yes|no | Visited: N | PathLen: L | Cost: C | Time(us): T
+
+SYMBOLS
+  # wall
+  . open
+  S start (always on '.')
+  G goal  (always on '.')
+  + visited (not on final path)
+  * final path
+
+PRECEDENCE
+  Base (.,#) -> '+' on open -> '*' replaces '+' -> force 'S' and 'G' last.
+
+PATH RULES
+  - 4-neighbor moves only (N,E,S,W)
+  - If found, include start and goal in path
+  - PathLen = nodes - 1; Cost = PathLen on unit grids
+  - If not found, no '*', path_ids empty
+
+LAYOUT AND DETERMINISM
+  - No extra spaces; no ANSI colors
+  - One blank line between consecutive algorithms
+  - Fixed neighbor order to keep outputs consistent

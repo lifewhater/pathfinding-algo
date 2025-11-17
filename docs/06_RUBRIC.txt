@@ -1,0 +1,7 @@
+RUBRIC (20 POINTS)
+
+8  Algorithm correctness (BFS, Dijkstra, A*): correct paths, handles no-path
+4  Design and code quality: clear structure, const-correctness, invariants
+3  Visualization and CLI: readable, complete, robust messages
+3  Testing and determinism: small maps, seeds, reproducible results
++5 Optional bonus: weighted terrains, diagonals with admissible heuristic, CSV logging, animation

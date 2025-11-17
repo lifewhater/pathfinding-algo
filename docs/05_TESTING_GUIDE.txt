@@ -1,0 +1,13 @@
+TESTING GUIDE
+
+Minimum tests:
+  1) Trivial reachable map (single-row corridor)
+  2) Small map with walls and a known shortest path
+  3) No-path map (goal isolated by walls)
+
+What to verify:
+  - Found yes/no correct
+  - Path is continuous with 4-neighbor moves
+  - PathLen equals nodes-1; Cost equals PathLen on unit grid
+  - Visited mask length equals Width*Height
+  - Deterministic outputs for same inputs

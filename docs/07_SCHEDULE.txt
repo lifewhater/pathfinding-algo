@@ -1,0 +1,17 @@
+RECOMMENDED SCHEDULE (3 WEEKS)
+
+Week 1:
+  - Grid representation and map loading
+  - CLI parsing and configuration
+  - BFS implementation and path reconstruction
+  - First working visualization
+
+Week 2:
+  - Dijkstra implementation and tests
+  - A* implementation and tests
+  - Confirm equal path costs on unit grids
+
+Week 3:
+  - Visualization polish and error messages
+  - Optional generation and experiments
+  - Short comparison report and cleanup

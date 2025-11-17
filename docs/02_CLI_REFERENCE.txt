@@ -1,0 +1,36 @@
+COMMAND-LINE INTERFACE (CLI) REFERENCE
+
+NAME
+  pathfinder - run and visualize grid-based pathfinding (BFS, Dijkstra, A*)
+
+SYNOPSIS
+  app --algo {bfs|dijkstra|astar|all} --map <path>
+  app --generate --width <int> --height <int> --density <float> --seed <int> --algo {bfs|dijkstra|astar|all}
+
+DESCRIPTION
+  Runs selected algorithm(s) on a loaded or generated grid, then prints a deterministic ASCII visualization and metrics.
+
+OPTIONS
+  --algo {bfs|dijkstra|astar|all}
+      Select algorithm(s) to run.
+
+  --map <path>
+      Load map from file. START and GOAL must be on '.' cells.
+
+  --generate
+      Generate a random map. Use with --width, --height, --density, --seed.
+
+  --width <int>   Columns for generated map.
+  --height <int>  Rows for generated map.
+  --density <float 0..1>  Fraction of walls; typical 0.25..0.35.
+  --seed <int>    Random seed for reproducibility.
+
+  --help
+      Print a short summary of options and exit.
+
+EXAMPLES
+  app --algo bfs --map maps/sample_small.txt
+  app --generate --width 40 --height 20 --density 0.28 --seed 42 --algo all
+
+EXIT STATUS
+  0 success, 1 input/config error, 2 runtime error

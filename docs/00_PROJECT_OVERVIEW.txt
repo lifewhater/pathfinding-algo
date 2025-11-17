@@ -1,0 +1,19 @@
+CSCI 115 FINAL PROJECT: PATHFINDING VISUALIZER (PROJECT OVERVIEW)
+
+Purpose:
+Build a CLI-based visualizer that loads or generates grid maps, runs BFS/Dijkstra/A*, and renders a deterministic ASCII visualization of exploration and the final path.
+
+Core Parts:
+1) Grid representation and map loading
+2) CLI (Command-Line Interface) and configuration
+3) BFS and visualization (functional core)
+4) Dijkstra's algorithm
+5) A* search
+6) Optional random map generation
+7) Experimentation and brief report
+
+High-Level Outcomes:
+- Correct paths and error handling
+- Clear, deterministic ASCII output
+- Comparable metrics across algorithms
+- Clean code structure and documentation

@@ -1,0 +1,15 @@
+MAP FILE FORMAT
+
+Header lines (order-insensitive; one per line):
+  WIDTH  <cols>
+  HEIGHT <rows>
+  START  <row> <col>
+  GOAL   <row> <col>
+
+Grid body:
+  Exactly HEIGHT lines, each with WIDTH characters from {'.', '#'}
+
+Rules:
+  - START and GOAL coordinates must refer to '.' cells in the body
+  - Coordinates are 0-based (row, col)
+  - Lines starting with '#' are treated as comments in the header section only

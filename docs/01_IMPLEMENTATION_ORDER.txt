@@ -1,0 +1,35 @@
+RECOMMENDED IMPLEMENTATION ORDER (CONCEPTUAL)
+
+1) Grid Representation and Map Loading
+   - Represent 2D grid as 1D array (id = r * width + c)
+   - Store cells: '.' open, '#' wall
+   - Parse WIDTH, HEIGHT, START r c, GOAL r c, followed by HEIGHT lines of grid
+   - Validate: START and GOAL must be on '.'
+   - Provide: InBounds, IsBlocked, ToId, FromId, GetNeighbors (4-neighbor)
+
+2) CLI (Command-Line Interface) and Configuration
+   - Parse options: --algo {bfs|dijkstra|astar|all}, --map <path> OR --generate with --width/--height/--density/--seed
+   - Validate inputs and reject contradictory flags
+   - Keep main() focused on orchestration (parse -> build grid -> run -> render)
+
+3) BFS and Visualization (Functional Core)
+   - BFS explores via a queue; store visited, parent, and distance tables
+   - Reconstruct path when goal is found
+   - Visualization (ASCII): base map, '+' for visited non-path, '*' for path, preserve 'S' and 'G'
+   - Confirm end-to-end on a tiny valid map
+
+4) Dijkstra's Algorithm
+   - Replace queue with min-heap; maintain distance table
+   - On unit-cost grids, results match BFS (sanity check)
+
+5) A* Search
+   - Use g(n) + h(n), with h = Manhattan distance to goal
+   - Typically explores fewer nodes than Dijkstra on unit grids
+
+6) Optional Random Map Generation
+   - Use seed, density, and size to procedurally create maps
+   - Always ensure S=(0,0) and G=(H-1,W-1) are '.'
+
+7) Experimentation and Report
+   - Record Visited, PathLen, Cost, Time(us)
+   - Compare algorithms and reflect on tradeoffs

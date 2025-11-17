@@ -1,0 +1,41 @@
+API CONTRACT (FOR GRADING)
+
+Headers required (names and signatures):
+
+grid.hpp
+  struct Cell { int row; int col; };
+  class Grid {
+    Grid();
+    bool LoadFromFile(const std::string& path);
+    bool Generate(int height, int width, double density, unsigned int seed);
+    int Height() const; int Width() const;
+    bool InBounds(int r, int c) const;
+    bool IsBlocked(int r, int c) const;
+    int  ToId(int r, int c) const; Cell FromId(int id) const;
+    int  StartId() const; int GoalId() const;
+    Cell Start() const;   Cell Goal() const;
+    char At(int r, int c) const;
+    int  GetNeighbors(int id, int out[4]) const;
+  };
+
+algo_common.hpp
+  struct RunResult {
+    bool found;
+    std::vector<int> path_ids;
+    std::vector<char> visited_mask;
+    int explored_count;
+    int path_cost;
+    long long micros;
+  };
+
+algo_bfs.hpp
+  RunResult RunBFS(const Grid& grid);
+
+algo_dijkstra.hpp
+  RunResult RunDijkstra(const Grid& grid);
+
+algo_astar.hpp
+  RunResult RunAStar(const Grid& grid);
+
+render.hpp
+  void OverlayAndPrint(const Grid& grid, const RunResult& rr, const std::string& algo_name);
