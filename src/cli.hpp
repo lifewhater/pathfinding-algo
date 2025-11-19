@@ -19,6 +19,6 @@ struct config {
     bool showHelp = false;
 };
 
-bool parseArgs(int argc, char * argv[], config);
+bool parseArgs(int argc, char * argv[], config& cfg);
 void printHelp();
 

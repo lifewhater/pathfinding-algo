@@ -5,7 +5,7 @@ using namespace std;
 void printHelp(){
     cout << "Usage: Runs selected algorithm(s) on a loaded or generated grid, then prints a deterministic ASCII visualization and metrics." << endl;
     cout << "\tOPTIONS:" << endl;
-    cout << "\t\t--algo {bfs|dijkstra|astar|all} : Select algorithm(s) to run." << endl;
+    cout << "\t\t--algo {bfs|dijkstra|astar|all} : Select algorithms to run." << endl;
     cout << "\t\t--map <path>                    : Load map from file." << endl;
     cout << "\t\t--generate                      : Generate a random map" << endl;
     cout << "\t\t--width <int>                   : Columns for generated map" << endl;
@@ -25,7 +25,7 @@ bool parseArgs(int argc, char * argv[], config& cfg){
             return true;
         }
 
-        if(arg == "--algo"){
+        else if(arg == "--algo"){
             string which = argv[++i];
             if(which == "bfs"){
                 cfg.algo = algoChoice::BFS;
@@ -44,6 +44,6 @@ bool parseArgs(int argc, char * argv[], config& cfg){
                 return false;
             }
         }
-
     }
+    return true;  
 }
