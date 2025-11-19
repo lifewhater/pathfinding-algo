@@ -9,6 +9,11 @@
 #include <vector>
 #include <string>
 
+//libraries that I added
+#include <fstream>
+#include <iostream>
+#include "cli.hpp"
+
 struct Cell { int row; int col; };
 
 class Grid {
@@ -39,4 +44,25 @@ private:
     int start_id_, goal_id_;
 };
 
+
+// Load from file map done. Made a test map that is loaded.
+bool Grid::LoadFromFile(const std::string& path){
+        std::ifstream file(path);
+
+    if(!file.is_open()){
+        std::cout << "Map failed to open!\n";
+        return false;
+    }
+
+    std::string str;
+    std::string file_content;
+
+    while(std::getline(file, str)){
+        file_content += str;
+        file_content.push_back('\n');
+    }
+    std::cout << file_content;
+
+return true;
+}
 #endif
