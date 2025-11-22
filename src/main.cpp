@@ -9,7 +9,7 @@ int main(int argc, char* argv[]) {
     config cfg;
     parseArgs(argc, argv, cfg);
     
-    std::cout << "Pathfinding Visualizer Starter\n";
+    std::cout << "\n\nPathfinding Visualizer Starting...\n";
 
     // std::cout << "TODO: Implement CLI parsing (--algo, --map, --generate, etc.)\n";
     // PARSING STARTER CLI ARGUMENTS
@@ -21,7 +21,7 @@ int main(int argc, char* argv[]) {
     if(cfg.algo == algoChoice::BFS){
         std::cout << "BFS PRINTING\n";
     } else if(cfg.algo == algoChoice::Dijkstra){
-        std::cout << "Dijkstra PRINTING\n";
+        std::cout << "\n\nDijkstra PRINTING\n";
     }else if(cfg.algo == algoChoice::AStar){
         std::cout << "AStar PRINTING\n";
     }else if(cfg.algo == algoChoice::All){
