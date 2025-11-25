@@ -28,13 +28,13 @@ int main(int argc, char* argv[]) {
         std::cout << "ALL PRINTING\n";
     }
     
- 
     //std::cout << "TODO: Load or generate a grid map. Validate S/G on open cells.\n";
     // GRID LOADING WITH FILE INPUT
     Grid g;
     if(cfg.useMap){
         g.LoadFromFile(cfg.mapInput);
     }
+
     std::cout << "TODO: Run selected algorithm(s): BFS, Dijkstra, A*.\n";
     std::cout << "TODO: Render ASCII output with visited (+) and path (*), preserving S/G and walls.\n";
     return 0;

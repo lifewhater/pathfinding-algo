@@ -59,6 +59,8 @@ inline bool Grid::IsBlocked(int r, int c) const {
 }
 
 
+
+
 // Load from file map done
 inline bool Grid::LoadFromFile(const std::string& path){
         std::ifstream file(path);
