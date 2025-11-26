@@ -72,6 +72,11 @@ inline bool Grid::LoadFromFile(const std::string& path){
 
     std::string str;
     std::string file_content;
+    int w = -1;
+    int h = -1;
+    int start_r = -1, start_c = -1;
+    int goal_r = -1, goal_c = -1;
+
 
     /*
     WIDTH  10
@@ -79,13 +84,9 @@ inline bool Grid::LoadFromFile(const std::string& path){
     START  0 0
     GOAL   5 5
     */
-   
 
-    while(std::getline(file, str)){
-        file_content += str;
-        file_content.push_back('\n');
-    }
-    std::cout << file_content;
+
+
 
 return true;
 }
