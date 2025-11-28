@@ -1,8 +1,8 @@
 [
 {
   "directory": "/home/prabhjot/Documents/CSCI115FinalVizualizer/build",
-  "command": "/usr/bin/g++  -I/home/prabhjot/Documents/CSCI115FinalVizualizer/src -g -std=c++17 -Wall -Wextra -Wpedantic -O2 -o CMakeFiles/app.dir/src/main.cpp.o -c /home/prabhjot/Documents/CSCI115FinalVizualizer/src/main.cpp",
+  "command": "/usr/bin/g++ -I/home/prabhjot/Documents/CSCI115FinalVizualizer/src -g -std=c++17 -Wall -Wextra -Wpedantic -O2 -o CMakeFiles/app.dir/src/main.cpp.o -c /home/prabhjot/Documents/CSCI115FinalVizualizer/src/main.cpp",
   "file": "/home/prabhjot/Documents/CSCI115FinalVizualizer/src/main.cpp",
-  "output": "CMakeFiles/app.dir/src/main.cpp.o"
+  "output": "/home/prabhjot/Documents/CSCI115FinalVizualizer/build/CMakeFiles/app.dir/src/main.cpp.o"
 }
 ]

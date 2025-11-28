@@ -11,6 +11,7 @@
 
 //libraries that I added
 #include <fstream>
+#include <sstream>
 #include <iostream>
 #include "cli.hpp"
 
@@ -58,9 +59,6 @@ inline bool Grid::IsBlocked(int r, int c) const {
     return cells_[id] == '#';
 }
 
-
-
-
 // Load from file map done
 inline bool Grid::LoadFromFile(const std::string& path){
         std::ifstream file(path);
@@ -70,6 +68,8 @@ inline bool Grid::LoadFromFile(const std::string& path){
         return false;
     }
 
+    // whether header is done
+    bool header_done = true;
     std::string str;
     std::string file_content;
     int w = -1;
@@ -77,14 +77,43 @@ inline bool Grid::LoadFromFile(const std::string& path){
     int start_r = -1, start_c = -1;
     int goal_r = -1, goal_c = -1;
 
-
     /*
     WIDTH  10
     HEIGHT 6
     START  0 0
     GOAL   5 5
     */
+    while(getline(file,str)){
+        if(str.empty()){
+            continue;
+        }
+        if(str[0] == '#'){
+            continue; // skip comments
+        }
 
+        if(!header_done){
+            std::istringstream input(str);
+            std::string header;
+            input >> header;
+
+            if(header == "HEIGHT"){
+                input >> h;
+            }
+            else if(header == "WIDTH"){
+                input >> w;
+            }
+            else if(header == "START"){
+                input >> start_r >> start_c; 
+            }
+            else if(header == "GOAL"){
+                input >> goal_r >> goal_c;
+            }
+            else{
+                std::cerr << "NOT VALID INPUT" << std::endl;
+                return false;
+            }
+        }
+    }
 
 
 
