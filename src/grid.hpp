@@ -69,27 +69,20 @@ inline bool Grid::LoadFromFile(const std::string& path){
     }
 
     // whether header is done
-    bool header_done = true;
+    bool header_done = false;
+    // variables 
     std::string str;
     std::string file_content;
     int w = -1;
     int h = -1;
     int start_r = -1, start_c = -1;
     int goal_r = -1, goal_c = -1;
+    std::vector<std::string> grid_lines;
 
-    /*
-    WIDTH  10
-    HEIGHT 6
-    START  0 0
-    GOAL   5 5
-    */
+    // incorporates load from file. 
     while(getline(file,str)){
-        if(str.empty()){
-            continue;
-        }
-        if(str[0] == '#'){
-            continue; // skip comments
-        }
+        if(str.empty())continue;
+        if(str[0] == '#')continue; // skip comments
 
         if(!header_done){
             std::istringstream input(str);
@@ -109,13 +102,54 @@ inline bool Grid::LoadFromFile(const std::string& path){
                 input >> goal_r >> goal_c;
             }
             else{
-                std::cerr << "NOT VALID INPUT" << std::endl;
-                return false;
+                // checks if the input is valid
+                bool looks_like_grid = (w > 0 && h > 0 && str.size() == static_cast<size_t>(w));
+                if(looks_like_grid){
+                    for(char ch : str) {
+                        if(ch != '.' && ch != '#'){
+                            looks_like_grid = false;
+                            break;
+                        }
+                    }
+                }
+                if(looks_like_grid){
+                    header_done = true;
+                    grid_lines.push_back(str);
+                } else {
+                    std::cerr << "NOT VALID INPUT\n";
+                    return false;
+                }
             }
+        }
+        else {
+            grid_lines.push_back(str);
         }
     }
 
+    width_ = w;
+    height_ = h;
+    cells_.assign(width_ * height_, '.'); // assigns every position with '.'
+    
+    for(int r = 0; r < height_; ++r){
+        const std::string& row = grid_lines[r];
+        if(static_cast<int>(row.size()) != width_){
+            std::cerr << "Row length wrong \n";
+            return false;
+        }
 
+        for(int c = 0; c < width_; ++c){
+            char  ch = row[c];
+            int id = ToId(r, c);
+            cells_[id] = ch;
+        }
+    }
+    start_id_ = ToId(start_r, start_c);
+    goal_id_ = ToId(goal_r, goal_c);
+
+    if(cells_[start_id_]!= '.' || cells_[goal_id_] != '.'){
+        std::cerr << "START or GOAL not on open cell\n";
+        return false;
+    }
 
 return true;
 }
