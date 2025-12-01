@@ -80,15 +80,16 @@ inline bool Grid::LoadFromFile(const std::string& path){
     std::vector<std::string> grid_lines;
 
     // incorporates load from file. 
-    while(getline(file,str)){
-        if(str.empty())continue;
-        if(str[0] == '#')continue; // skip comments
+    while(std::getline(file,str)){
+        if(!str.empty() && str[0] == '#' && !header_done) continue; // skip comments
 
+        // if the header is not done, it reads the headers and inputs the variables.
         if(!header_done){
             std::istringstream input(str);
             std::string header;
             input >> header;
 
+            // reads height, width, start r c, goal r c
             if(header == "HEIGHT"){
                 input >> h;
             }
@@ -112,6 +113,7 @@ inline bool Grid::LoadFromFile(const std::string& path){
                         }
                     }
                 }
+                // some error handling. 
                 if(looks_like_grid){
                     header_done = true;
                     grid_lines.push_back(str);
@@ -126,6 +128,7 @@ inline bool Grid::LoadFromFile(const std::string& path){
         }
     }
 
+    // updates width and height vars
     width_ = w;
     height_ = h;
     cells_.assign(width_ * height_, '.'); // assigns every position with '.'
@@ -154,6 +157,33 @@ inline bool Grid::LoadFromFile(const std::string& path){
 return true;
 }
 
+//Getting the neighbors
+inline int Grid::GetNeighbors(int id, int out[4]) const{
+    Cell here = FromId(id);
+    int r = here.row;
+    int c = here.col;
+    int count = 0;
+
+                 // N, E, S, W
+    int drow[4] = {-1, 0, 1, 0};
+    int dcol[4] = {0, 1, 0, -1};
+
+    for(int k = 0; k< 4; ++k){
+        int new_row = r + drow[k];
+        int new_col = c + dcol[k];
+
+        // skip if it is out of bounds
+        if(!InBounds(new_row, new_col)) continue;
+
+        // skip if blocked
+        if(IsBlocked(new_row, new_col)) continue;
+
+        int new_id = ToId(new_row, new_col);
+        out[count] = new_id;
+        ++count;
+    }
+    return count;
+}
 
 
 #endif

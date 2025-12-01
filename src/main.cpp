@@ -32,7 +32,16 @@ int main(int argc, char* argv[]) {
     // GRID LOADING WITH FILE INPUT
     Grid g;
     if(cfg.useMap){
-        g.LoadFromFile(cfg.mapInput);
+        if(!g.LoadFromFile(cfg.mapInput)){
+            std::cerr << "Failed to load map: " << cfg.mapInput << "\n";
+            return 1;
+        }
+        for (int r = 0; r < g.Height();++r){
+            for(int c = 0; c < g.Width(); ++c){
+                std::cout << g.At(r, c);
+            }
+            std::cout << '\n';
+        }
     }
 
     std::cout << "TODO: Run selected algorithm(s): BFS, Dijkstra, A*.\n";
