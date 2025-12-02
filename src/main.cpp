@@ -4,10 +4,13 @@
 #include "cli.hpp"
 #include "grid.hpp"
 #include <iostream>
+#include "algo_bfs.hpp"
+#include "render.hpp"
 
 int main(int argc, char* argv[]) {
     config cfg;
     parseArgs(argc, argv, cfg);
+    Grid g;
     
     std::cout << "\n\nPathfinding Visualizer Starting...\n";
 
@@ -18,9 +21,13 @@ int main(int argc, char* argv[]) {
         return 0;
     } 
 
-    if(cfg.algo == algoChoice::BFS){
+    if(cfg.algo ==  algoChoice::BFS){
         std::cout << "BFS PRINTING\n";
-    } else if(cfg.algo == algoChoice::Dijkstra){
+        RunResult bfs_result = RunBFS(g);
+        OverlayAndPrint(g, bfs_result, "BFS");
+    }
+
+    else if(cfg.algo == algoChoice::Dijkstra){
         std::cout << "\n\nDijkstra PRINTING\n";
     }else if(cfg.algo == algoChoice::AStar){
         std::cout << "AStar PRINTING\n";
@@ -30,7 +37,7 @@ int main(int argc, char* argv[]) {
     
     //std::cout << "TODO: Load or generate a grid map. Validate S/G on open cells.\n";
     // GRID LOADING WITH FILE INPUT
-    Grid g;
+
     if(cfg.useMap){
         if(!g.LoadFromFile(cfg.mapInput)){
             std::cerr << "Failed to load map: " << cfg.mapInput << "\n";
