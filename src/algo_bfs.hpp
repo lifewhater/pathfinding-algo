@@ -9,4 +9,5 @@
 
 RunResult RunBFS(const Grid& grid);
 
+
 #endif
