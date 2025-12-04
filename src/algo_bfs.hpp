@@ -12,21 +12,19 @@
 #include <algorithm>
 #include <limits>
 
-
-
-RunResult RunBFS(const Grid& grid){
+RunResult RunBFS(const Grid &grid)
+{
     RunResult rr;
-        /* data */
+    /* data */
     bool found = false;
     std::vector<int> path_ids; // includes start and goal
-    std::vector<char> visited_mask;
     int explored_count = 0; // nodes popped
-    int path_cost = 0; // path length
+    int path_cost = 0;      // path length
     long long micros = 0;
 
     int H = grid.Height();
     int W = grid.Width();
-    int N = H * W;  // total number of cells
+    int N = H * W; // total number of cells
 
     rr.visited_mask.assign(N, 0);
     std::vector<int> parent(N, -1); // used to draw +
@@ -34,21 +32,23 @@ RunResult RunBFS(const Grid& grid){
     int start = grid.StartId();
     int goal = grid.GoalId();
 
-    // used to kept time
+    // used to keep time
     using clock = std::chrono::steady_clock;
-    auto time = clock::now();
+    auto time_start = clock::now();
 
     std::queue<int> q; // stores which nodes to explore next
     q.push(start);
     rr.visited_mask[start] = 1; // marks as visited
 
-    while(!q.empty()){
+    while (!q.empty())
+    {
         int u = q.front();
         q.pop();
 
         rr.explored_count++;
 
-        if(u==goal){
+        if (u == goal)
+        {
             rr.found = true;
             break;
         }
@@ -56,9 +56,11 @@ RunResult RunBFS(const Grid& grid){
         int neighbors[4];
         int n = grid.GetNeighbors(u, neighbors);
 
-        for(int i = 0; i < n; ++i){
+        for (int i = 0; i < n; ++i)
+        {
             int v = neighbors[i];
-            if(!rr.visited_mask[v]){
+            if (!rr.visited_mask[v])
+            {
                 rr.visited_mask[v] = 1;
                 parent[v] = u;
                 q.push(v);
@@ -67,12 +69,14 @@ RunResult RunBFS(const Grid& grid){
     }
 
     auto t1 = clock::now();
-    rr.micros = std::chrono::duration_cast<std::chrono::microseconds> (time - t1).count();
+    rr.micros = std::chrono::duration_cast<std::chrono::microseconds>(t1 - time_start).count();
 
-    if(rr.found) {
+    if (rr.found)
+    {
         std::vector<int> path;
         int cur = goal;
-        while(cur != -1){
+        while (cur != -1)
+        {
             path.push_back(cur);
             cur = parent[cur];
         }
@@ -83,7 +87,5 @@ RunResult RunBFS(const Grid& grid){
 
     return rr;
 }
-
-
 
 #endif
