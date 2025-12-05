@@ -26,6 +26,7 @@ RunResult RunBFS(const Grid &grid)
     q.push(start);
     rr.visited_mask[start] = 1; // marks as visited
 
+    // bfs main loop
     while (!q.empty())
     {
         int u = q.front();
@@ -39,6 +40,7 @@ RunResult RunBFS(const Grid &grid)
             break;
         }
 
+        // explore all unvisited neighbors
         int neighbors[4];
         int n = grid.GetNeighbors(u, neighbors);
 
@@ -54,9 +56,11 @@ RunResult RunBFS(const Grid &grid)
         }
     }
 
+    // figure out time taken
     auto timer_end = std::chrono::high_resolution_clock::now();
     rr.micros = std::chrono::duration_cast<std::chrono::microseconds>(timer_end - timer_start).count();
 
+    // reconstruct path if found
     if (rr.found)
     {
         std::vector<int> path;
