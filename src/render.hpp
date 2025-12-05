@@ -31,7 +31,7 @@ void OverlayAndPrint(const Grid& grid, const RunResult &rr, const std::string &a
     int W = grid.Width();
     int N = H * W;
     // header
-    std::cout << "====== " << algo_name << " ======\n";
+    std::cout << "\n=== " << algo_name << " ===\n\n";
 
     // rendering grid
     std::vector<char> buffer(N);

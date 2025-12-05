@@ -7,6 +7,7 @@
 #include "grid.hpp"
 #include "algo_common.hpp"
 
+
 RunResult RunDijkstra(const Grid& grid);
 
 #endif

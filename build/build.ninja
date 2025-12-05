@@ -58,6 +58,24 @@ build CMakeFiles/app.dir/src/main.cpp.o: CXX_COMPILER__app_unscanned_Debug /home
   OBJECT_FILE_DIR = CMakeFiles/app.dir/src
   TARGET_SUPPORT_DIR = CMakeFiles/app.dir
 
+build CMakeFiles/app.dir/src/dijkstra.cpp.o: CXX_COMPILER__app_unscanned_Debug /home/prabhjot/Documents/CSCI115FinalVizualizer/src/dijkstra.cpp || cmake_object_order_depends_target_app
+  CONFIG = Debug
+  DEP_FILE = CMakeFiles/app.dir/src/dijkstra.cpp.o.d
+  FLAGS = -g -std=c++17 -Wall -Wextra -Wpedantic -O2
+  INCLUDES = -I/home/prabhjot/Documents/CSCI115FinalVizualizer/src
+  OBJECT_DIR = CMakeFiles/app.dir
+  OBJECT_FILE_DIR = CMakeFiles/app.dir/src
+  TARGET_SUPPORT_DIR = CMakeFiles/app.dir
+
+build CMakeFiles/app.dir/src/bfs.cpp.o: CXX_COMPILER__app_unscanned_Debug /home/prabhjot/Documents/CSCI115FinalVizualizer/src/bfs.cpp || cmake_object_order_depends_target_app
+  CONFIG = Debug
+  DEP_FILE = CMakeFiles/app.dir/src/bfs.cpp.o.d
+  FLAGS = -g -std=c++17 -Wall -Wextra -Wpedantic -O2
+  INCLUDES = -I/home/prabhjot/Documents/CSCI115FinalVizualizer/src
+  OBJECT_DIR = CMakeFiles/app.dir
+  OBJECT_FILE_DIR = CMakeFiles/app.dir/src
+  TARGET_SUPPORT_DIR = CMakeFiles/app.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target app
@@ -66,7 +84,7 @@ build CMakeFiles/app.dir/src/main.cpp.o: CXX_COMPILER__app_unscanned_Debug /home
 #############################################
 # Link the executable app
 
-build app: CXX_EXECUTABLE_LINKER__app_Debug CMakeFiles/app.dir/src/main.cpp.o
+build app: CXX_EXECUTABLE_LINKER__app_Debug CMakeFiles/app.dir/src/main.cpp.o CMakeFiles/app.dir/src/dijkstra.cpp.o CMakeFiles/app.dir/src/bfs.cpp.o
   CONFIG = Debug
   DEP_FILE = CMakeFiles/app.dir/link.d
   FLAGS = -g
