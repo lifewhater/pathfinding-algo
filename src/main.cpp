@@ -9,6 +9,7 @@
 // algorithms
 #include "algo_bfs.hpp"
 #include "algo_dijkstra.hpp"
+#include "algo_astar.hpp"
 
 int main(int argc, char *argv[])
 {
@@ -56,14 +57,28 @@ int main(int argc, char *argv[])
     else if (cfg.algo == algoChoice::AStar)
     {
         std::cout << "\n\nAStar Finding Path...\n";
+        RunResult astar_result = RunAStar(g);
+        OverlayAndPrint(g, astar_result, "AStar");
     }
     else if (cfg.algo == algoChoice::All)
     {
         std::cout << "\n\nALL Finding Path...\n";
+        
+        // BFS
+        std::cout << "\n\nBFS Finding Path...\n";
+        RunResult bfs_result = RunBFS(g);
+        OverlayAndPrint(g, bfs_result, "BFS");
+
+        // Dijkstra
+        std::cout << "\n\nDijkstra Finding Path...\n";
+        RunResult dijkstra_result = RunDijkstra(g);
+        OverlayAndPrint(g, dijkstra_result, "Dijkstra");
+
+        // AStar
+        std::cout << "\n\nAStar Finding Path...\n";
+        RunResult astar_result = RunAStar(g);
+        OverlayAndPrint(g, astar_result, "AStar");
     }
 
-
-    std::cout << "TODO: Run selected algorithm(s): Dijkstra, A*.\n";
-    std::cout << "TODO: Render ASCII output with visited (+) and path (*), preserving S/G and walls.\n";
     return 0;
 }

@@ -16,5 +16,11 @@
   "command": "/usr/bin/g++ -I/home/prabhjot/Documents/CSCI115FinalVizualizer/src -g -std=c++17 -Wall -Wextra -Wpedantic -O2 -o CMakeFiles/app.dir/src/bfs.cpp.o -c /home/prabhjot/Documents/CSCI115FinalVizualizer/src/bfs.cpp",
   "file": "/home/prabhjot/Documents/CSCI115FinalVizualizer/src/bfs.cpp",
   "output": "/home/prabhjot/Documents/CSCI115FinalVizualizer/build/CMakeFiles/app.dir/src/bfs.cpp.o"
+},
+{
+  "directory": "/home/prabhjot/Documents/CSCI115FinalVizualizer/build",
+  "command": "/usr/bin/g++ -I/home/prabhjot/Documents/CSCI115FinalVizualizer/src -g -std=c++17 -Wall -Wextra -Wpedantic -O2 -o CMakeFiles/app.dir/src/astar.cpp.o -c /home/prabhjot/Documents/CSCI115FinalVizualizer/src/astar.cpp",
+  "file": "/home/prabhjot/Documents/CSCI115FinalVizualizer/src/astar.cpp",
+  "output": "/home/prabhjot/Documents/CSCI115FinalVizualizer/build/CMakeFiles/app.dir/src/astar.cpp.o"
 }
 ]
