@@ -31,7 +31,7 @@ RunResult RunBFS(const Grid &grid)
     {
         int u = q.front();
         q.pop();
-
+        // mark as explored
         rr.explored_count++;
 
         if (u == goal)
@@ -44,6 +44,7 @@ RunResult RunBFS(const Grid &grid)
         int neighbors[4];
         int n = grid.GetNeighbors(u, neighbors);
 
+        // neighbors exploration
         for (int i = 0; i < n; ++i)
         {
             int v = neighbors[i];
