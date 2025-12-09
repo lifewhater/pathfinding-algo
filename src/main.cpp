@@ -34,51 +34,123 @@ int main(int argc, char *argv[])
 
     // std::cout << "TODO: Implement CLI parsing (--algo, --map, --generate, etc.)\n";
     // PARSING STARTER CLI ARGUMENTS
-    if (cfg.showHelp)
-    {
-        printHelp();
-        return 0;
-    }
+    // if (cfg.showHelp)
+    // {
+    //     printHelp();
+    //     return 0;
+    // }
 
-    if (cfg.algo == algoChoice::BFS)
-    {
-        std::cout << "\n\nBFS Finding Path...\n";
-        RunResult bfs_result = RunBFS(g);
-        OverlayAndPrint(g, bfs_result, "BFS");
-    }
+    // if (cfg.algo == algoChoice::BFS)
+    // {
+    //     std::cout << "\n\nBFS Finding Path...\n";
+    //     RunResult bfs_result = RunBFS(g);
+    //     AnimatePath(g, bfs_result, "BFS");
+    // } else{
+    //     OverlayAndPrint(g, RunResult(), "BFS");
+    // }
 
-    else if (cfg.algo == algoChoice::Dijkstra)
-    {
-        std::cout << "\n\nDijkstra Finding Path...\n";
-        RunResult dijkstra_result = RunDijkstra(g);
-        OverlayAndPrint(g, dijkstra_result, "Dijkstra");
-    }
+    // if (cfg.algo == algoChoice::Dijkstra)
+    // {
+    //     std::cout << "\n\nDijkstra Finding Path...\n";
+    //     RunResult dijkstra_result = RunDijkstra(g);
+    //     AnimatePath(g, dijkstra_result, "Dijkstra");
+    // } else{
+    //     OverlayAndPrint(g, RunResult(), "Dijkstra");
+    // }
     
-    else if (cfg.algo == algoChoice::AStar)
-    {
-        std::cout << "\n\nAStar Finding Path...\n";
-        RunResult astar_result = RunAStar(g);
-        OverlayAndPrint(g, astar_result, "AStar");
-    }
-    else if (cfg.algo == algoChoice::All)
-    {
-        std::cout << "\n\nALL Finding Path...\n";
+    // if (cfg.algo == algoChoice::AStar)
+    // {
+    //     std::cout << "\n\nAStar Finding Path...\n";
+    //     RunResult astar_result = RunAStar(g);
+    //     AnimatePath(g, astar_result, "A*");
+    // } else {
+    //     OverlayAndPrint(g, RunResult(), "A*");
+    // }
+
+
+    // if (cfg.algo == algoChoice::All)
+    // {
+    //     std::cout << "\n\nALL Finding Path...\n";
         
-        // BFS
+    //     // BFS
+    //     std::cout << "\n\nBFS Finding Path...\n";
+    //     RunResult bfs_result = RunBFS(g);
+    //     AnimatePath(g, bfs_result, "BFS");
+
+    //     // Dijkstra
+    //     std::cout << "\n\nDijkstra Finding Path...\n";
+    //     RunResult dijkstra_result = RunDijkstra(g);
+    //     AnimatePath(g, dijkstra_result, "Dijkstra");
+
+    //     // AStar
+    //     std::cout << "\n\nAStar Finding Path...\n";
+    //     RunResult astar_result = RunAStar(g);
+    //     AnimatePath(g, astar_result, "AStar");
+    // }
+    // else {
+    //     OverlayAndPrint(g, RunResult(), "ALL");
+    // }
+
+    switch (cfg.algo)
+    {
+    case algoChoice::BFS:
+        /* code */
         std::cout << "\n\nBFS Finding Path...\n";
-        RunResult bfs_result = RunBFS(g);
-        OverlayAndPrint(g, bfs_result, "BFS");
-
-        // Dijkstra
+        {
+            RunResult bfs_algo = RunBFS(g);
+            if(cfg.animate){
+                AnimatePath(g, bfs_algo, "BFS");
+            } else{
+                OverlayAndPrint(g, bfs_algo, "BFS");
+            }
+        }
+        break;
+    case algoChoice::Dijkstra:
         std::cout << "\n\nDijkstra Finding Path...\n";
-        RunResult dijkstra_result = RunDijkstra(g);
-        OverlayAndPrint(g, dijkstra_result, "Dijkstra");
-
-        // AStar
+        {
+            RunResult dijkstra_algo = RunDijkstra(g);
+            if(cfg.animate){
+                AnimatePath(g, dijkstra_algo, "Dijkstra");
+            } else{
+                OverlayAndPrint(g, dijkstra_algo, "Dijkstra");
+            }
+        }
+        break;
+    case algoChoice::AStar:
         std::cout << "\n\nAStar Finding Path...\n";
-        RunResult astar_result = RunAStar(g);
-        OverlayAndPrint(g, astar_result, "AStar");
+        {
+            RunResult astar_algo = RunAStar(g);
+            if(cfg.animate){
+                AnimatePath(g, astar_algo, "A*");
+            } else{
+                OverlayAndPrint(g, astar_algo, "A*");
+            }
+        }
+        break;
+    case algoChoice::All:
+        std::cout << "\n\nALL Finding Path...\n";
+        {
+            // BFS
+            std::cout << "\n\nBFS Finding Path...\n";
+            RunResult bfs_algo = RunBFS(g);
+            OverlayAndPrint(g, bfs_algo, "BFS");
+
+            // Dijkstra
+            std::cout << "\n\nDijkstra Finding Path...\n";
+            RunResult dijkstra_algo = RunDijkstra(g);
+            OverlayAndPrint(g, dijkstra_algo, "Dijkstra");
+
+            // AStar
+            std::cout << "\n\nAStar Finding Path...\n";
+            RunResult astar_algo = RunAStar(g);
+            OverlayAndPrint(g, astar_algo, "A*");
+        }
+        break;
+    default:
+        std::cerr << "Unknown algorithm choice.\n";
+        break;
     }
+
 
     return 0;
 }

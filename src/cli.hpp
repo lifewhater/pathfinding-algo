@@ -17,6 +17,7 @@ struct config {
     int seed = 0;
     double density = 0.0;
     bool showHelp = false;
+    bool animate = false;
 };
 
 inline void printHelp(){
@@ -29,6 +30,7 @@ inline void printHelp(){
     std::cout << "\t\t--height <int>                  : Rows for generated map." << std::endl;
     std::cout << "\t\t--density <float 0..1>          : Fraction of walls;" << std::endl;
     std::cout << "\t\t--seed <int>                    : Random seed for reproducibility." << std::endl;
+    std::cout << "\t\t --animate                      : Delay between steps in microseconds." << std::endl;
     std::cout << "\tEXAMPLE:" << std::endl;
     std::cout << "\t\tapp --algo bfs --width 40 --height 20 --density 0.28 --seed 42" << std::endl;
 }
@@ -71,6 +73,11 @@ inline bool parseArgs(int argc, char * argv[], config& cfg){
         if(arg == "--map" && i+1 < argc){
             cfg.mapInput = argv[++i];
             cfg.useMap = true;
+        }
+
+        // animation 
+        else if(arg == "--animate"){
+            cfg.animate = true;
         }
     }
     return true;

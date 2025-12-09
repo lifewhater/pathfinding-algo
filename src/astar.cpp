@@ -44,7 +44,6 @@ RunResult RunAStar(const Grid &grid){
 
     while(!open_set.empty()){
         int currentNode = open_set.top().second;
-        int currentF = open_set.top().first;
         open_set.pop();
 
         // If we reached the goal

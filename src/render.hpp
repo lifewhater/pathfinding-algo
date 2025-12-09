@@ -11,6 +11,8 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <chrono>
+#include <thread>
 
 // algorithms
 #include "algo_common.hpp"
@@ -25,7 +27,7 @@ SUMMARY- FOUND: YES|NO || VISITED: N || PATHLEN: L || COST: C || TIME: T
 base map contains ('.', '#') -> visited '+' -> path '*' -> Start 'S' -> Goal 'G'
 */
 
-void OverlayAndPrint(const Grid& grid, const RunResult &rr, const std::string &algo_name)
+inline void OverlayAndPrint(const Grid& grid, const RunResult &rr, const std::string &algo_name)
 {
     int H = grid.Height();
     int W = grid.Width();
@@ -78,13 +80,34 @@ void OverlayAndPrint(const Grid& grid, const RunResult &rr, const std::string &a
             std::cout << "\n";
        }
            // SUMMARY- FOUND: YES|NO || VISITED: N || PATHLEN: L || COST: C || TIME: T
-    std::cout << "FOUND: " << (rr.found ? "YES" : "NO")
-              << " || VISITED: " << rr.explored_count
-              << " || PATHLEN: " << rr.path_ids.size()
-              << " || COST: " << rr.path_cost
-              << " || TIME: " << rr.micros << " micros\n";
+    std::cout << "FOUND: " << (rr.found ? "yes" : "no")
+              << " | VISITED: " << rr.explored_count
+              << " | PATHLEN: " << rr.path_ids.size()
+              << " | COST: " << rr.path_cost
+              << " | TIME: " << rr.micros << " micros\n";
     }
 
+inline void clearConsole(){
+    // ANSI escape code to clear the console
+    std::cout << "\033[2J\033[H" << std::flush;
+}
+
+inline void AnimatePath(const Grid &grid, const RunResult &rr, const std::string &algo_name, int delay_ms = 200){
+    if(rr.found == false){
+        clearConsole();
+        OverlayAndPrint(grid, rr, algo_name);
+        return;
+    }
+
+    RunResult temp_rr = rr;
+    for(std::size_t i = 0; i <= rr.path_ids.size(); i++){
+        temp_rr.path_ids.assign(rr.path_ids.begin(), rr.path_ids.begin() + i);
+        clearConsole();
+        OverlayAndPrint(grid, temp_rr, algo_name);
+
+        std::this_thread::sleep_for(std::chrono::milliseconds(delay_ms));
+    }
+}
 
 
 #endif
