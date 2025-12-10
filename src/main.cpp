@@ -1,3 +1,11 @@
+/*
+Prabhjot Singh CSCI115 Final Project
+Pathfinding Visualizer
+Please see README.md for additional details.
+    - Explains how to build and run.
+    - Lists any known issues or limitations or shortcomings.
+    - Describes any optional/bonus features implemented.
+*/
 // main.cpp
 // Purpose: Entry point. Students will implement CLI parsing, map loading/generation,
 // algorithm dispatch, and visualization calls. For now, this prints TODOs.

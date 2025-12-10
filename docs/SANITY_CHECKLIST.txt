@@ -3,39 +3,24 @@ Project Sanity Checklist
 
 Purpose: quick checklist to track what's implemented vs remaining work.
 
-- [-] CLI parsing (core)
+- [x] CLI parsing (core)
 	- Implement `--algo` and `--help` flags; validate inputs and expose config to `main` (partial: `--algo` and `--help` implemented).
 - [x] Make `cli.hpp` header-only
 	- Move `printHelp` and `parseArgs` implementations into `src/cli.hpp` as `inline`. Removed `src/cli.cpp`.
-- [ ] Grid representation & utilities
+- [ x] Grid representation & utilities
 	- Implement grid data structure, coordinate/id conversion, in-bounds check, neighbor iterator (4-neighbor).
-- [ ] Map parser and validation
+- [x] Map parser and validation
 	- Parse map files per `docs/04_MAP_FORMAT.txt` and validate START/GOAL on '.' cells.
-- [ ] BFS algorithm + path reconstruction
+- [x] BFS algorithm + path reconstruction
 	- Implement BFS with visited/parent/distance tables and path reconstruction when goal found.
-- [ ] ASCII visualization renderer
+- [x] ASCII visualization renderer
 	- Implement overlay renderer that prints `# . S G + *` per `docs/03_VISUALIZATION_REFERENCE.txt`.
-- [ ] Dijkstra's algorithm
+- [x] Dijkstra's algorithm
 	- Implement Dijkstra using min-heap; verify results on unit-cost grids.
-- [ ] A* search
+- [x] A* search
 	- Implement A* with Manhattan heuristic and verify correctness/performance.
-- [ ] Random map generator
-	- Implement `--generate` with `--width/--height/--density/--seed` and ensure S/G are '.'
-- [ ] Testing: minimal test cases
+- [x] Testing: minimal test cases
 	- Add unit/integration tests: trivial reachable, known shortest path, no-path map. Verify deterministic output and metrics.
-- [ ] CLI completeness & validation
-	- Add `--map`, `--generate`, `--width`, `--height`, `--density`, `--seed` handling; reject contradictory flags.
 - [x] Documentation & examples
 	- Ensure `docs/` are up-to-date; add CLI usage examples and sample map files (`maps/`).
-- [ ] Optional: CMake sources automation
-	- Optionally change `CMakeLists.txt` to auto-glob `src/*.cpp` for easier development.
-
-Notes:
-- Header-only functions in `cli.hpp` are marked `inline` to avoid multiple-definition linker errors.
-- Use `cmake -S . -B build && cmake --build build -j` to build.
-
-Next recommended tasks:
-1. Implement Grid representation and Map parser (these enable BFS and others).
-2. Implement BFS and ASCII renderer.
-3. Add tests for minimal maps.
 
