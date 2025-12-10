@@ -1,0 +1,68 @@
+=== ANALYSIS ONLY FOR DEFAULT MAP PROVIDED ===
+
+=== BFS ===
+S+++++++++
+*####+++++
+*****###++
+++##*++++.
+++++*#++..
+++++*G####
+FOUND: yes | VISITED: 40 | PATHLEN: 11 | COST: 10 | TIME: 6 micros
+
+=== Dijkstra ===
+S+++++++++
+*####+++++
+*****###+.
+++##*+++..
+++++*#+...
+++++*G####
+FOUND: yes | VISITED: 40 | PATHLEN: 11 | COST: 10 | TIME: 9 micros
+
+=== A* ===
+S+++++....
+*####+....
+*****###..
+++##*+....
+++++*#....
+++++*G####
+FOUND: yes | VISITED: 28 | PATHLEN: 11 | COST: 10 | TIME: 8 micros
+
+
+===== COMPARISON TABLE =====
+Algorithm   | Visited | PathLen | Cost | Time(us) | Efficiency
+BFS         | 40      | 11      | 10   | 6        | Baseline
+Dijkstra    | 40      | 11      | 10   | 9        | 1.5x slower
+A*          | 28      | 11      | 10   | 8        | 30% fewer visits
+
+===== ANALYSIS & TRADEOFFS =====
+
+Observations:
+
+1. Path Optimality
+   All three algorithms found the same optimal path (cost = 10, length = 11).
+   This confirms correctness: BFS and Dijkstra guarantee shortest paths on unit grids,
+   and A* with an admissible heuristic (Manhattan distance) also guarantees optimality.
+
+2. Node Exploration
+   BFS and Dijkstra explored 40 nodes (identical), as expected on uniform-cost grids.
+   A* explored only 28 nodes (30% fewer) by using Manhattan distance heuristic to guide
+   the search toward the goal, pruning less-promising branches earlier.
+
+3. Execution Time
+   BFS was fastest (6ms), followed by A* (8ms), then Dijkstra (9ms).
+   The time differences are negligible for this small grid, but on larger grids:
+   - BFS's simple queue operations are cheapest
+   - A* heuristic computation + priority queue becomes worth it due to fewer visits
+   - Dijkstra lies between due to priority queue but no heuristic benefit
+
+4. When to Use Each Algorithm
+   - BFS: Optimal for unweighted/unit-cost grids when simplicity matters
+   - Dijkstra: General shortest path; handles variable edge weights; no heuristic needed
+   - A*: Best for pathfinding with heuristic info; explores fewer nodes on larger grids
+
+5. Conclusion
+   On this small test case, BFS wins on speed due to minimal overhead.
+   However, A* demonstrates clear value by visiting 30% fewer nodes with only 33% time increase.
+   On larger grids (100x100+), A*'s node savings would more than offset its heuristic cost,
+   making it the practical choice for game AI and robotics applications.
+

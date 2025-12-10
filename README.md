@@ -40,3 +40,4 @@ Build a CLI-based visualizer that runs BFS/Dijkstra/A* on a user generated map a
 - FURTHER IMPROVEMENTS TO BE 
 - Look at github for more information and timeline of the project
 	https://github.com/lifewhater/pathfinding-algo
+

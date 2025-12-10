@@ -136,23 +136,21 @@ int main(int argc, char *argv[])
         }
         break;
     case algoChoice::All:
-        std::cout << "\n\nALL Finding Path...\n";
+        std::cout << "\n\nALL Algorithms Finding Paths...\n";
         {
             // BFS
-            std::cout << "\n\nBFS Finding Path...\n";
             RunResult bfs_algo = RunBFS(g);
             OverlayAndPrint(g, bfs_algo, "BFS");
 
             // Dijkstra
-            std::cout << "\n\nDijkstra Finding Path...\n";
             RunResult dijkstra_algo = RunDijkstra(g);
             OverlayAndPrint(g, dijkstra_algo, "Dijkstra");
 
             // AStar
-            std::cout << "\n\nAStar Finding Path...\n";
             RunResult astar_algo = RunAStar(g);
             OverlayAndPrint(g, astar_algo, "A*");
         }
+        
         break;
     default:
         std::cerr << "Unknown algorithm choice.\n";
